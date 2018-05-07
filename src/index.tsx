@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-// import Player from './Player';
-import { Button } from './Controls/Button';
+import Player from './Player';
 
 interface VideoPlayerWindow extends Window {
     videoPlayer?: {
@@ -16,5 +15,5 @@ win.videoPlayer.create = (node: HTMLElement | string) => {
     const el = typeof node === 'string'
         ? document.getElementById(node)
         : node;
-    ReactDOM.render(<Button />, el);
+    ReactDOM.render(<Player />, el);
 }

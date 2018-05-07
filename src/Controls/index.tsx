@@ -1,7 +1,12 @@
 import * as React from 'react';
-
-export default class Player extends React.Component<{}, {}> {
+import { Button } from "./Button";
+export class Controls extends React.Component<{}, {}> {
     render() {
-        return <h1>Hello Man</h1>;
+        return (
+            <div>
+                <Button />
+            </div>
+        );
     }
 }
+
