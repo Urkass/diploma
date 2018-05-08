@@ -7,7 +7,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --notify --config=jest.config.json",
     "start": "webpack-dev-server",
     "build": "webpack -p"
   },
@@ -36,6 +36,15 @@
     "webpack-cli": "^2.1.3"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.1.10",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/jest": "^22.2.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^22.4.3",
+    "svg-react-loader": "^0.4.5",
+    "ts-jest": "^22.4.5",
     "ts-loader": "^4.3.0",
     "typescript": "^2.8.3",
     "webpack": "^4.8.0",

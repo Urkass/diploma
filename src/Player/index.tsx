@@ -1,8 +1,10 @@
 import * as React from 'react';
-import * as classes from './index.css';
+import * as classes from './index.pcss';
 import { Controls } from '../Controls';
 
-export default class Player extends React.Component<{}, {}> {
+export type Config = any;
+
+export class Player extends React.Component<{config: Config}, {}> {
     render() {
         return (
             <div>

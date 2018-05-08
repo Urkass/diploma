@@ -23,7 +23,7 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.css$/,
+                test: /\.p?css$/,
                 use: [
                     {
                         loader: 'style-loader',
@@ -43,6 +43,10 @@ module.exports = {
                     },
                     'postcss-loader'
                 ]
+            },
+            {
+                test: /\.svg$/,
+                use: 'svg-react-loader'
             }
         ]
     },

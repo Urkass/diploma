@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Button } from "./Button";
+import { PlayButton, State } from './PlayButton';
+
 export class Controls extends React.Component<{}, {}> {
     render() {
         return (
             <div>
-                <Button />
+                <PlayButton videoState={State.play} />
             </div>
         );
     }

@@ -1,19 +1,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Player from './Player';
-
+import { Player, Config } from './Player';
 interface VideoPlayerWindow extends Window {
     videoPlayer?: {
-        create?: (node: HTMLElement) => void;
+        create?: (node: HTMLElement, config: Config) => void;
     }
 }
 
 const win = window as VideoPlayerWindow;
 
 win.videoPlayer = win.videoPlayer || {};
-win.videoPlayer.create = (node: HTMLElement | string) => {
+win.videoPlayer.create = (node: HTMLElement | string, config: Config) => {
     const el = typeof node === 'string'
         ? document.getElementById(node)
         : node;
-    ReactDOM.render(<Player />, el);
+    ReactDOM.render(<Player config={config}/>, el);
 }

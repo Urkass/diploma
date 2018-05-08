@@ -1,0 +1,12 @@
+{
+    "transform": {
+        "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleNameMapper": {
+        "\\.pcss$": "identity-obj-proxy",
+        "\\.svg$": "<rootDir>/test/mocks/mockSvg.ts"
+    },
+    "testMatch": ["<rootDir>/src/**/*.test.(ts|tsx)"],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
+    "setupTestFrameworkScriptFile": "<rootDir>/test/setup.ts"
+}
