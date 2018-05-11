@@ -1,6 +1,6 @@
 import * as React from 'react';
-import iconPause from './pause.svg';
-import iconPlay from './play.svg';
+import iconPause from '!svg-react-loader!./pause.svg';
+import iconPlay from '!svg-react-loader!./play.svg';
 import { Button } from '../Button';
 
 
@@ -11,6 +11,7 @@ export enum State {
 
 interface PlayButtonProps {
     videoState: State;
+    onClick?: () => void;
 }
 
 const iconsToStateMapping = {
@@ -20,9 +21,9 @@ const iconsToStateMapping = {
 
 export class PlayButton extends React.Component<PlayButtonProps, {}> {
     render() {
-        const { videoState } = this.props;
+        const { videoState, onClick } = this.props;
         return (
-            <Button icon={iconsToStateMapping[videoState]} />
+            <Button onClick={onClick} icon={iconsToStateMapping[videoState]} />
         );
     }
 }
