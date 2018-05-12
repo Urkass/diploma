@@ -1,3 +1,6 @@
+@value iconColor from '../constants.pcss';
+@value iconHoverColor from '../constants.pcss';
+
 .button {
     background: black;
     width: 34px;
@@ -5,8 +8,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     &__icon {
-        fill: red;
+        stroke: iconColor;
+
+        &_filled {
+            fill: iconColor;
+        }
+    }
+
+    &:hover > &__icon {
+        stroke: iconHoverColor;
+        &_filled {
+            fill: iconHoverColor;
+        }
     }
 }

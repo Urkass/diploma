@@ -1,8 +1,10 @@
 const path = require('path');
 
+const isProd = !process.argv.some((arg) => arg === '-p');
+
 const DIST_NAME = 'dist';
 
-module.exports = ({ isStoryBook } = {}) => {
+module.exports = ({ isStoryBook, dirname = __dirname } = {}) => {
     return {
         entry: './src/index.tsx',
         performance: {
@@ -38,7 +40,7 @@ module.exports = ({ isStoryBook } = {}) => {
                                 namedExport: true,
                                 modules: true,
                                 importLoaders: 1,
-                                // localIdentName: isProd ? '[hash:base64:6]' : '[path][name]---[local]',
+                                localIdentName: isProd && !isStoryBook ? '[hash:base64:6]' : '[path][name]---[local]',
                                 minimize: true
                             }
                         },
@@ -56,7 +58,7 @@ module.exports = ({ isStoryBook } = {}) => {
         },
         output: {
             filename: 'bundle.js',
-            path: path.resolve(__dirname, DIST_NAME)
+            path: path.resolve(dirname, DIST_NAME)
         }
     }
 };

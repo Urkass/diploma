@@ -7,9 +7,13 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "jest --notify --config=jest.config.json",
+    "test": "npm run jest",
     "start": "webpack-dev-server",
+    "jest": "jest --notify --config=jest.config.json",
     "storybook": "start-storybook -p 9001 -c .storybook",
+    "chromedriver": "chromedriver --port=4444 --url-base=wd/hub",
+    "gemini:update": "gemini update",
+    "svgo": "svgo src/Controls/**/*.svg --config=./buildScripts/svgoConfig.json",
     "build": "webpack -p"
   },
   "repository": {
@@ -25,6 +29,7 @@
   "dependencies": {
     "@types/react": "^16.3.13",
     "@types/react-dom": "^16.0.5",
+    "classnames": "^2.2.5",
     "css-loader": "^0.28.11",
     "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^2.1.5",
@@ -40,6 +45,7 @@
     "@storybook/addon-actions": "^3.4.3",
     "@storybook/cli": "^3.4.3",
     "@storybook/react": "^3.4.3",
+    "@types/classnames": "^2.2.3",
     "@types/enzyme": "^3.1.10",
     "@types/enzyme-adapter-react-16": "^1.0.2",
     "@types/jest": "^22.2.3",
@@ -47,11 +53,15 @@
     "@types/storybook__react": "^3.0.7",
     "awesome-typescript-loader": "^4.0.1",
     "babel-core": "^6.26.3",
+    "chromedriver": "^2.38.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "gemini": "^5.7.0",
     "identity-obj-proxy": "^3.0.0",
+    "is-ci": "^1.1.0",
     "jest": "^22.4.3",
     "svg-react-loader": "^0.4.5",
+    "svgo": "^1.0.5",
     "ts-jest": "^22.4.5",
     "tslint": "^5.10.0",
     "tslint-config-airbnb": "^5.8.0",
