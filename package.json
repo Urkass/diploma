@@ -13,6 +13,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "chromedriver": "chromedriver --port=4444 --url-base=wd/hub",
     "gemini:update": "gemini update",
+    "gemini:test": "gemini test",
     "svgo": "svgo src/Controls/**/*.svg --config=./buildScripts/svgoConfig.json",
     "build": "webpack -p"
   },
@@ -57,6 +58,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "gemini": "^5.7.0",
+    "glob": "^7.1.2",
     "identity-obj-proxy": "^3.0.0",
     "is-ci": "^1.1.0",
     "jest": "^22.4.3",

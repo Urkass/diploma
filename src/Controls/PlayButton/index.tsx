@@ -3,7 +3,6 @@ import iconPause from '!svg-react-loader!./pause.svg';
 import iconPlay from '!svg-react-loader!./play.svg';
 import { Button } from '../Button';
 
-
 export enum State {
     play = 'PLAY',
     pause = 'PAUSE'
