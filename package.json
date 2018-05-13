@@ -13,7 +13,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "chromedriver": "chromedriver --port=4444 --url-base=wd/hub",
     "gemini:update": "gemini update",
-    "gemini:test": "npm run chromedriver & gemini test",
+    "gemini:test": "npm run chromedriver & npm run storybook & gemini test",
     "svgo": "svgo src/Controls/**/*.svg --config=./buildScripts/svgoConfig.json",
     "build": "webpack -p"
   },
