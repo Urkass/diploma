@@ -5,5 +5,5 @@ addons: # get google-chrome-stable
   chrome: stable
 script:
 - npm run test
-  - whereis google-chrome-stable
-  - whereis chromedriver
+- whereis google-chrome-stable
+- whereis chromedriver
