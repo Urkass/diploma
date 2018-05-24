@@ -3,3 +3,4 @@
 dist
 *.css.d.ts
 node_modules/
+public/*.mp4

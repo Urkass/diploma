@@ -10,7 +10,14 @@
 <body>
     <div id="root"></div>
     <script>
-        window.videoPlayer.create('root');
+        window.videoPlayer.create('root', {
+            autoplay: true,
+            src: './kinopoisk.ru-Sherlock-284167.mp4',
+            size: {
+                width: 300,
+                height: 200
+            }
+        });
     </script>
 </body>
 </html>
