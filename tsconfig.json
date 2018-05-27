@@ -17,6 +17,7 @@
     "types": [
       "classnames",
       "react",
+      "react-redux",
       "react-dom",
       "jest"
     ]
