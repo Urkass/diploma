@@ -2,7 +2,7 @@ import * as classes from './index.pcss';
 // import * as cx from 'classnames';
 import * as React from 'react';
 import { TimePanel } from '../TimePanel';
-import { TimelineControl } from '../TimelineControl';
+import { Line, Direction } from '../Line';
 
 interface TimelineProps {
     currentTime: number;
@@ -13,6 +13,8 @@ interface TimelineProps {
 interface TimelineState {
     currentTime?: number;
 }
+
+const WIDTH = 350;
 
 export class Timeline extends React.Component<TimelineProps, TimelineState> {
     private onTimeChange: (time: number) => void;
@@ -35,10 +37,12 @@ export class Timeline extends React.Component<TimelineProps, TimelineState> {
         return (
             <div className={classes.timeline}>
                 <TimePanel time={currentTime} />
-                <TimelineControl 
-                    {...this.props}
-                    currentTime={currentTime}
-                    onTimeChange={(e) => this.onTimeChange(e)}
+                <Line
+                    currentValue={currentTime}
+                    size={WIDTH}
+                    maxValue={duration}
+                    direction={Direction.horizontal}
+                    onChange={(time) => this.onTimeChange(time)}
                 />
                 <TimePanel time={duration} />
             </div>

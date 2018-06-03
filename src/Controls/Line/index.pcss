@@ -1,23 +1,25 @@
 @value mainColor from '../constants.pcss';
+@value size: 7px;
 
-.timelineControl {
-    border-color: mainColor;
+.line {
     border: 2px solid mainColor;
     border-radius: 5px;
-    /* width: 100%; */
-    min-width: 350px;
-    height: 7px;
     cursor: pointer;
-    
-    &__line {
-        
+
+    &_direction_horizontal {
+        height: size;
+    }
+
+    &_direction_vertical {
+        width: size;
     }
 
     &__filled {
         background: rgba(204, 204, 204, 0.48);
-        height: 7px;
         border-radius: 5px;
         position: relative;
+
+
     }
 
     &__button {
@@ -29,8 +31,15 @@
         cursor: pointer;
         position: relative;
         top: -2px;
-        left: -10px;
         transition: background-color 0.5s ease;
+        
+        &_direction_horizontal {
+            left: -10px;
+        }
+
+        &_direction_vertical {
+            left: -2px;
+        }
 
         &:hover {
             background: rgba(204, 204, 204, 0.48);

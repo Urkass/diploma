@@ -1,7 +1,7 @@
 module.exports = {
-    name: 'TimelineControl',
+    name: 'Volume',
     stories: {
-
+        common: 'common'
     },
     states: {
         hover: true
