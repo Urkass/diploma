@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PlayButton, State } from './PlayButton';
+import { PlayButton } from './PlayButton';
 import * as classes from './index.pcss';
 import { ControlsDispatchProps, ControlsStateProps} from '../containers/Controls';
 
@@ -12,7 +12,7 @@ export class Controls extends React.Component<ControlsProps, {}> {
             <div className={classes.wrapper}>
                 <div className={classes.controls}>
                     <PlayButton 
-                        videoState={this.props.isPlaying ? State.play : State.pause}
+                        isPlaying={this.props.isPlaying}
                         onClick={this.props.toggleVideoState}
                     />
                 </div>

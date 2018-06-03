@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { PlayButton, State as PlayButtonState } from '.';
+import { PlayButton } from '.';
 const config = require('./index.gemini');
 
 storiesOf(config.name, module)
-    .add(config.stories['playing'], () => <PlayButton onClick={action('click')} videoState={PlayButtonState.play} />)
-    .add(config.stories['paused'], () => <PlayButton onClick={action('click')} videoState={PlayButtonState.pause} />);
+    .add(config.stories['playing'], () => <PlayButton onClick={action('click')} isPlaying={true} />)
+    .add(config.stories['paused'], () => <PlayButton onClick={action('click')} isPlaying={false}/>);

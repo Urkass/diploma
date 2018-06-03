@@ -1,0 +1,43 @@
+@value mainColor from '../constants.pcss';
+
+.timelineControl {
+    border-color: mainColor;
+    border: 2px solid mainColor;
+    border-radius: 5px;
+    /* width: 100%; */
+    min-width: 350px;
+    height: 7px;
+    cursor: pointer;
+    
+    &__line {
+        
+    }
+
+    &__filled {
+        background: rgba(204, 204, 204, 0.48);
+        height: 7px;
+        border-radius: 5px;
+        position: relative;
+    }
+
+    &__button {
+        /* background: rgba(204, 204, 204, 0.48); */
+        height: 7px;
+        width: 7px;
+        border-radius: 50%;
+        border: 2px solid mainColor;
+        cursor: pointer;
+        position: relative;
+        top: -2px;
+        left: -10px;
+        transition: background-color 0.5s ease;
+
+        &:hover {
+            background: rgba(204, 204, 204, 0.48);
+        }
+
+        &_clicked {
+            background: rgba(204, 204, 204, 0.9) !important;
+        }
+    }
+}

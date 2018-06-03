@@ -9,7 +9,7 @@ export enum State {
 }
 
 interface PlayButtonProps {
-    videoState: State;
+    isPlaying: boolean;
     onClick?: () => void;
 }
 
@@ -20,7 +20,8 @@ const iconsToStateMapping = {
 
 export class PlayButton extends React.Component<PlayButtonProps, {}> {
     render() {
-        const { videoState, onClick } = this.props;
+        const { isPlaying, onClick } = this.props;
+        const videoState = isPlaying ? State.play : State.pause;
         return (
             <Button onClick={onClick} icon={iconsToStateMapping[videoState]} />
         );
