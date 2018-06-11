@@ -7,7 +7,11 @@ export interface PlayerStore {
 
     },
     controls: {
+        currentTime: number;
+        duration: number;
+        volume: number;
         isPlaying: boolean;
+        isFullscreen: boolean;
     }
 }
 

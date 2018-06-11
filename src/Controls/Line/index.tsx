@@ -13,6 +13,8 @@ interface LineProps {
     size: number;
     direction: Direction;
     onChange: (n: number) => void;
+    isVisible?: boolean;
+    onMouseOver?: () => void;
 }
 
 interface LineState {
@@ -47,14 +49,15 @@ export class Line extends React.Component<LineProps, LineState> {
         const lineStyle: Record<string, string> = {};
         const filledStyle: Record<string, string> = {};
         const buttonStyle: Record<string, string> = {};
-        const { direction, size, maxValue, currentValue } = this.props;
+        const { direction, size, maxValue, currentValue, isVisible = true, onMouseOver } = this.props;
         const timelineSize = size - CONTROL_SIZE;
         const offset = (currentValue / maxValue) * timelineSize; //+ CONTROL_SIZE/2 + 1;
 
         if (direction === Direction.horizontal) {
-            filledStyle.width = `${offset}px`;
+            filledStyle.width = `${offset + CONTROL_SIZE}px`;
             lineStyle.width = `${size}px`;
-            buttonStyle.transform = `translateX(${offset}px)`;
+            filledStyle.height =  '7px';
+            buttonStyle.transform = `translateX(${offset + CONTROL_SIZE}px)`;
         } else if (direction === Direction.vertical) {
             filledStyle.height = `${offset}px`;
             lineStyle.height = `${size}px`;
@@ -62,7 +65,7 @@ export class Line extends React.Component<LineProps, LineState> {
         }
         
         return (
-                <div 
+            isVisible && <div 
                     className={this.addModifiers(
                         classes.line,
                         'line',
@@ -71,6 +74,7 @@ export class Line extends React.Component<LineProps, LineState> {
                     onClick={(e) => this.onClick(e)}
                     ref={(elem) => this.elem = elem}
                     style={lineStyle}
+                    onMouseOver={onMouseOver}
                 >
                     <div style={filledStyle} className={classes.line__filled}>
                         <div 

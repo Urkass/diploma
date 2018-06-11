@@ -1,5 +1,8 @@
+import {connect} from 'react-redux';
 import * as React from 'react';
-// import * as classes from './index.pcss';
+import { PlayerStore } from '../store';
+import * as cx from 'classnames';
+import * as classes from './index.pcss';
 
 export type Size = {
     width: number;
@@ -11,23 +14,66 @@ export type CanvasVideoProps = {
     className: string;
     size: Size;
     autoplay: boolean;
+    videoElement: HTMLVideoElement;
 };
 
-export class CanvasVideo extends React.Component<CanvasVideoProps, {}> {
+type CanvasVideoPropsFromRedux = {
+    isFullscreen: boolean;
+}
 
-    private videoElement = this.makeVirtualVideoElement(this.props.src)
+class CanvasVideoComponent extends React.Component<CanvasVideoProps & CanvasVideoPropsFromRedux, {}> {
+
     private canvasRef: HTMLCanvasElement | null;
+    private width: number;
+    private height: number;
 
     render() {
+        // if (this.canvasRef) {
+        //     this.canvasRef.width = this.width;
+        //     this.canvasRef.height = this.height;
+        // }
+        this.sizeChecker();
         return (
-            <canvas
+            <div
+                style={{
+                    width: `${this.width}px`,
+                    height: `${this.height}px`,
+                }}
+                className={cx({
+                    [classes.canvasVideo_fullscreen]: this.props.isFullscreen
+                })}
+            >
+                <canvas
                 ref={canvasRef => this.canvasRef = canvasRef}
-            />            
+            />
+                {this.props.children}
+            </div>
         );
+    }
+
+    private sizeChecker() {
+        let { width, height } =  this.props.size;
+        if (this.width !== undefined && this.height !== undefined) {
+            if (this.props.isFullscreen) {
+                width = window.outerWidth;
+                height = window.outerHeight;
+            }
+            if (width !== this.width && height !== this.height && this.canvasRef) {
+                this.canvasRef.width = width;
+                this.canvasRef.height = height;
+            }
+        }
+        this.width = width;
+        this.height = height;
     }
     
     componentDidMount() {
-        const { canvasRef, videoElement } = this;
+        this.createCanvas();
+    }
+
+    private createCanvas() {
+        const { canvasRef } = this;
+        const { videoElement } = this.props;
         if (!canvasRef) {
             return;
         }
@@ -35,16 +81,13 @@ export class CanvasVideo extends React.Component<CanvasVideoProps, {}> {
         if (!context) {
             return;
         }
-        canvasRef.width = this.props.size.width;
-        canvasRef.height = this.props.size.height;
+        canvasRef.width = this.width;
+        canvasRef.height = this.height;
         const playListener = () => {
             this.draw(videoElement, context, canvasRef.width, canvasRef.height);
         }
-        videoElement.addEventListener('play', () => playListener());
 
-        if (this.props.autoplay) {
-            videoElement.play();
-        }
+        videoElement.addEventListener('play', () => playListener());
     }
 
     private draw (
@@ -53,16 +96,17 @@ export class CanvasVideo extends React.Component<CanvasVideoProps, {}> {
         canvasWidth: number,
         canvasHeight: number
     ) {
-        context.drawImage(video, 0, 0, canvasWidth, canvasHeight);
-        requestAnimationFrame( () => this.draw(video,context, canvasWidth, canvasHeight));
+        context.drawImage(video, 0, 0, this.width, this.height);
+        requestAnimationFrame( () => this.draw(video,context, this.width, this.height));
 
-    }
-
-    private makeVirtualVideoElement (src: string) {
-        const video = document.createElement('video');
-        const source = document.createElement('source');
-        source.setAttribute('src', src);
-        video.appendChild(source);
-        return video;
     }
 }
+
+export const CanvasVideo = connect(
+    (state: PlayerStore, ownProps: CanvasVideoProps): CanvasVideoProps & CanvasVideoPropsFromRedux => {
+        return {
+            isFullscreen: state.controls.isFullscreen,
+            ...ownProps
+        }
+    }
+)(CanvasVideoComponent);

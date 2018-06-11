@@ -23,7 +23,10 @@ export class PlayButton extends React.Component<PlayButtonProps, {}> {
         const { isPlaying, onClick } = this.props;
         const videoState = isPlaying ? State.play : State.pause;
         return (
-            <Button onClick={onClick} icon={iconsToStateMapping[videoState]} />
+            <Button
+                onClick={onClick}
+                icon={iconsToStateMapping[videoState]}
+            />
         );
     }
 }

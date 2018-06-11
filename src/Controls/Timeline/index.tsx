@@ -3,11 +3,14 @@ import * as classes from './index.pcss';
 import * as React from 'react';
 import { TimePanel } from '../TimePanel';
 import { Line, Direction } from '../Line';
+import { InterfaceSizes } from '../';
+
 
 interface TimelineProps {
     currentTime: number;
     duration: number;
     onTimeChange?: (time: number) => void;
+    interfaceSize?: InterfaceSizes;
 }
 
 interface TimelineState {
@@ -15,6 +18,7 @@ interface TimelineState {
 }
 
 const WIDTH = 350;
+const WIDTH_L = 700
 
 export class Timeline extends React.Component<TimelineProps, TimelineState> {
     private onTimeChange: (time: number) => void;
@@ -30,7 +34,7 @@ export class Timeline extends React.Component<TimelineProps, TimelineState> {
     }
 
     render() {
-        const { duration } = this.props;
+        const { duration, interfaceSize } = this.props;
         const currentTime = this.state.currentTime === undefined
             ? this.props.currentTime
             : this.state.currentTime;
@@ -39,7 +43,12 @@ export class Timeline extends React.Component<TimelineProps, TimelineState> {
                 <TimePanel time={currentTime} />
                 <Line
                     currentValue={currentTime}
-                    size={WIDTH}
+                    size={
+                        (
+                            interfaceSize &&
+                            this.props.interfaceSize === InterfaceSizes.L
+                        ) ? WIDTH_L : WIDTH
+                    }
                     maxValue={duration}
                     direction={Direction.horizontal}
                     onChange={(time) => this.onTimeChange(time)}

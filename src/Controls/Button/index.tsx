@@ -1,9 +1,12 @@
 import * as classes from './index.pcss';
 import * as cx from 'classnames';
 import * as React from 'react';
+
 interface ButtonProps {
     icon?: SVGComponent;
     onClick?: () => void;
+    onMouseOver?: () => void;
+    onMouseOut?: () => void;
     isIconFilled?: boolean;
 }
 
@@ -12,12 +15,18 @@ export class Button extends React.Component<ButtonProps, {}> {
         const {
             icon: Icon,
             onClick = () => {},
-            isIconFilled
+            isIconFilled,
+            onMouseOver,
+            onMouseOut
         } = this.props;
         return (
             <div
-                className={classes.button}
+                className={cx(
+                    classes.button
+                )}
                 onClick={onClick}
+                onMouseOver={onMouseOver}
+                onMouseOut={onMouseOut}
             >
                 { Icon && <Icon className={ 
                     cx(

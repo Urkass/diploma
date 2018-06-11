@@ -1,6 +1,7 @@
 @value iconColor from '../constants.pcss';
 @value componentBackground from '../constants.pcss';
 @value componentHeight from '../constants.pcss';
+@value componentHeightLarge from '../constants.pcss';
 
 .button {
     background: componentBackground;
@@ -10,6 +11,11 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
+    &_L {
+        width: componentHeightLarge;
+        height: componentHeightLarge;
+    }
 
     &__icon {
         stroke: iconColor;

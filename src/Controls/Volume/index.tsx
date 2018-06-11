@@ -21,11 +21,12 @@ const HEIGHT = 53;
 
 export class Volume extends React.Component<VolumeProps, VolumeState> {
     private onVolumeChange: (volume: number) => void;
+    private visibleTimeout: number;
 
     constructor(props: VolumeProps) {
         super(props);
         this.state = {
-            cachedVolume: props.currentVolume > 0 ? 0 : 50,
+            cachedVolume: props.currentVolume > 0 ? 0 : 0.5,
             isHovered: false
         };
         if (!props.onVolumeChange) {
@@ -40,21 +41,40 @@ export class Volume extends React.Component<VolumeProps, VolumeState> {
         const icon = currentVolume === 0 ? iconVolumeOff : iconVolumeOn;
         return (
             <div className={classes.container}>
-                <div className={classes.volume}>
-                    <Line
-                        currentValue={currentVolume}
-                        size={HEIGHT}
-                        maxValue={100}
-                        direction={Direction.vertical}
-                        onChange={(volume) => this.onVolumeChange(volume)}
-                    />
-                </div>
+                {
+                    this.state.isHovered && <div
+                        className={classes.volume}
+                        onMouseOver={() => this.onMouseOver()}
+                        onMouseOut={() => this.onMouseOut()}
+                    >
+                        <Line
+                            currentValue={currentVolume}
+                            size={HEIGHT}
+                            maxValue={1}
+                            direction={Direction.vertical}
+                            onChange={(volume) => this.onVolumeChange(volume)}
+                        />
+                    </div>
+                }
                 <Button 
                     onClick={() => this.onClick()}
+                    onMouseOver={() => this.onMouseOver()}
+                    onMouseOut={() => this.onMouseOut()}
                     icon={icon} 
                 />
             </div>
         );
+    }
+
+    private onMouseOver() {
+        clearTimeout(this.visibleTimeout);
+        this.setState({isHovered: true});
+    }
+
+    private onMouseOut() {
+        this.visibleTimeout = setTimeout(() => {
+            this.setState({isHovered: false});
+        }, 1000)
     }
 
     private onClick() {

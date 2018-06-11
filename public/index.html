@@ -8,15 +8,19 @@
     <title>Test video-player</title>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root" style="position: absolute; top: 100px; left: 100px;"></div>
     <script>
         window.videoPlayer.create('root', {
-            autoplay: true,
+            autoplay: false,
             src: './kinopoisk.ru-Sherlock-284167.mp4',
-            changeWithDiv: true,
+            changeWithDiv: false,
+            // size: {
+            //     width: 600,
+            //     height: 400
+            // }
             size: {
-                width: 600,
-                height: 400
+                width: 1000,
+                height: 600
             }
         });
     </script>
